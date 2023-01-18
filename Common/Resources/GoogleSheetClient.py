@@ -40,17 +40,19 @@ class GoogleSheetClient:
 
         worksheet1 = gs.worksheet(sheetTitle)
 
+        df['entry'] = df['entry'].astype(str)
+        df['title'] = df['title'].astype(str)
+        import dateutil.parser
+        df['createdAt'] = df.apply(lambda x: dateutil.parser.isoparse(x['createdAt']), axis=1)
+        df['createdAt'] = df.apply(lambda x: x['createdAt'].strftime("'%a %Y-%m-%d %H:%M"), axis=1)
+        df.rename(columns={"date": "Pvm", "km": "Mittarilukema", 'title' : 'Syöttöaika', 'entry' : 'Syöte', 'createdAt' : 'Talletettu'}, inplace=True)
+        df['Ajo km'] = 0
+        df = df[['Pvm', 'Mittarilukema', 'Ajo km', 'Syöttöaika', 'Syöte', 'Talletettu']]
+        print(df)
+
         if True:
             worksheet1.clear()
             #df.drop(columns=['B', 'C'])
-            df['entry'] = df['entry'].astype(str)
-            df['title'] = df['title'].astype(str)
-            import dateutil.parser
-            df['createdAt'] = df.apply(lambda x: dateutil.parser.isoparse(x['createdAt']), axis=1)
-            df['createdAt'] = df.apply(lambda x: x['createdAt'].strftime('%Y-%m-%d %H:%M'), axis=1)
-            df.rename(columns={"date": "pvm", "km": "km lopussa"}, inplace=True)
-            df['ajo km'] = 0
-            df = df[['pvm', 'km lopussa', 'ajo km', 'title', 'entry', 'createdAt']]
             set_with_dataframe(worksheet=worksheet1, dataframe=df, include_index=False, include_column_header=True, resize=True)
             #worksheet1.add_rows(1)
             #worksheet1.append_row([''] , insert_data_option="INSERT_ROWS")
