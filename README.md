@@ -2,7 +2,9 @@
 
 Olli's test of [Robot Framework](https://robotframework.org/).
 
-![alt text](doc/images/Ajokilometrit.drawio.png)
+![Purpose](doc/images/Ajokilometrit.purpose.png)
+
+![Components](doc/images/Ajokilometrit.drawio.png)
 
 ## Running
 
