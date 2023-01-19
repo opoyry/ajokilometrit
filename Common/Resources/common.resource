@@ -10,7 +10,7 @@ ${decryptedFilePath}        ${EXECDIR}${/}tmp${/}SN-Data-Decrypted.json
 ${GmailCredentialFile}      C:/users/olli_/Downloads/gmail-credentials.json
 ${GoogleSheetCredentialFile}    C:/Users/olli_/Downloads/essaimgauth-c9a81bccd845.json
 ${browserPageToDecrypt}     https://crmprodsa02.blob.core.windows.net/carelocationpub/decrypt.html
-${sheetName}       Ajokilometrit
+${sheetName}       Ajokilometrit data
 
 *** Keywords ***
 

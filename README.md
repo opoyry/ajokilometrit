@@ -2,6 +2,8 @@
 
 Olli's test of [Robot Framework](https://robotframework.org/).
 
+![alt text](doc/images/Ajokilometrit.drawio.png)
+
 ## Running
 
 ```
