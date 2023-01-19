@@ -13,7 +13,7 @@ robot --include test --norpa .
 
 ## Sample outputs
 
-- [RPA report.html](doc/sample-outputs/RPA/report.html)
-- [RPA log.html](doc/sample-outputs/RPA/log.html)
-- [test report.html](doc/sample-outputs/test/report.html)
-- [test log.html](doc/sample-outputs/test/log.html)
+- [RPA report.html](https://opoyry.github.io/ajokilometrit/doc/sample-outputs/RPA/report.html)
+- [RPA log.html](https://opoyry.github.io/ajokilometrit/doc/sample-outputs/RPA/log.html)
+- [test report.html](https://opoyry.github.io/ajokilometrit/doc/sample-outputs/test/report.html)
+- [test log.html](https://opoyry.github.io/ajokilometrit/doc/sample-outputs/test/log.html)
