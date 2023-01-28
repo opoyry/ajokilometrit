@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.1 (Python 3.10.0 on win32)" generated="20230119 08:51:05.040" rpa="true" schemaversion="3">
+<suite id="s1" name="Ajokilometrit" source="C:\var\misc\ajokilometrit">
+<suite id="s1-s1" name="RPA" source="C:\var\misc\ajokilometrit\RPA">
+<suite id="s1-s1-s1" name="Tasks" source="C:\var\misc\ajokilometrit\RPA\Tasks">
+<suite id="s1-s1-s1-s1" name="1 Download From Mail" source="C:\var\misc\ajokilometrit\RPA\Tasks\1_download_from_mail.robot">
+<test id="s1-s1-s1-s1-t1" name="Login to Gmail and download Standard Notes backup" line="8">
+<kw name="Open Session To Gmail" library="GmailClient">
+<msg timestamp="20230119 08:51:06.222" level="INFO">file_cache is only supported with oauth2client&lt;4.0.0</msg>
+<msg timestamp="20230119 08:51:06.230" level="INFO">*** Open session to Gmail</msg>
+<status status="PASS" starttime="20230119 08:51:05.893" endtime="20230119 08:51:06.230"/>
+</kw>
+<kw name="Download Latest Export" library="GmailClient">
+<arg>${encryptedFilePath}</arg>
+<msg timestamp="20230119 08:51:06.831" level="INFO">Download latest export
+{'id': '185c87b396bfb0bd', 'threadId': '185c87b396bfb0bd'}
+Standard Notes Your encrypted data backup is attached for olli.poyry@iki.fi. You can import this file using the Standard Notes web or desktop app, or by using the offline decryption script available at
+Succesfully stored attachment C:\var\misc\ajokilometrit\tmp\SN-Data-Encrypted.txt</msg>
+<status status="PASS" starttime="20230119 08:51:06.231" endtime="20230119 08:51:06.831"/>
+</kw>
+<tag>rpa</tag>
+<status status="PASS" starttime="20230119 08:51:05.892" endtime="20230119 08:51:06.832"/>
+</test>
+<status status="PASS" starttime="20230119 08:51:05.072" endtime="20230119 08:51:06.834"/>
+</suite>
+<suite id="s1-s1-s1-s2" name="2 Decrypt Downloaded File" source="C:\var\misc\ajokilometrit\RPA\Tasks\2_decrypt_downloaded_file.robot">
+<test id="s1-s1-s1-s2-t1" name="Use browser page to decrypt file" line="13">
+<kw name="Run Keywords" library="BuiltIn" type="SETUP">
+<arg>Open Browser</arg>
+<arg>${browserPageToDecrypt}</arg>
+<arg>${BROWSER}</arg>
+<arg>AND</arg>
+<arg>Set Selenium Speed</arg>
+<arg>${SELSPEED}</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${browserPageToDecrypt}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230119 08:51:07.083" level="INFO">Opening browser 'chrome' to base url 'https://crmprodsa02.blob.core.windows.net/carelocationpub/decrypt.html'.</msg>
+<status status="PASS" starttime="20230119 08:51:07.083" endtime="20230119 08:51:11.053"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${SELSPEED}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20230119 08:51:11.053" endtime="20230119 08:51:11.053"/>
+</kw>
+<status status="PASS" starttime="20230119 08:51:07.082" endtime="20230119 08:51:11.053"/>
+</kw>
+<kw name="Use browser page to decrypt file" library="common">
+<kw name="Wait Until Element Is Enabled" library="SeleniumLibrary">
+<arg>id=chooser</arg>
+<doc>Waits until the element ``locator`` is enabled.</doc>
+<status status="PASS" starttime="20230119 08:51:11.054" endtime="20230119 08:51:11.130"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>id=chooser</arg>
+<arg>${encryptedFilePath}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20230119 08:51:11.131" level="INFO">Sending C:\var\misc\ajokilometrit\tmp\SN-Data-Encrypted.txt to browser.</msg>
+<status status="PASS" starttime="20230119 08:51:11.131" endtime="20230119 08:51:11.162"/>
+</kw>
+<kw name="click">
+<arg>id=password</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${element}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230119 08:51:11.163" level="INFO">Clicking element 'id=password'.</msg>
+<status status="PASS" starttime="20230119 08:51:11.163" endtime="20230119 08:51:11.209"/>
+</kw>
+<status status="PASS" starttime="20230119 08:51:11.162" endtime="20230119 08:51:11.209"/>
+</kw>
+<kw name="type">
+<arg>id=password</arg>
+<arg>Talvi2022!</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${element}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230119 08:51:11.210" level="INFO">Typing text 'Talvi2022!' into text field 'id=password'.</msg>
+<status status="PASS" starttime="20230119 08:51:11.209" endtime="20230119 08:51:11.270"/>
+</kw>
+<status status="PASS" starttime="20230119 08:51:11.209" endtime="20230119 08:51:11.270"/>
+</kw>
+<kw name="clickAndWait">
+<arg>id=download-import-file</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${element}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230119 08:51:11.271" level="INFO">Clicking element 'id=download-import-file'.</msg>
+<status status="PASS" starttime="20230119 08:51:11.271" endtime="20230119 08:51:11.326"/>
+</kw>
+<status status="PASS" starttime="20230119 08:51:11.270" endtime="20230119 08:51:11.326"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230119 08:51:16.333" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20230119 08:51:11.327" endtime="20230119 08:51:16.333"/>
+</kw>
+<kw name="Move Downloaded File" library="FileUtils">
+<arg>${decryptedFileName}</arg>
+<arg>${decryptedFilePath}</arg>
+<msg timestamp="20230119 08:51:16.341" level="INFO">homeDir C:\Users\olli_
+downloadedFileWithPath C:\Users\olli_\Downloads\decrypted-sn-data.txt
+homeDir ['.android', '.AndroidStudio3.4', '.aws', '.azcopy', '.azds', '.azure', '.azure-functions-core-tools', '.azuredatastudio', '.azurefunctions', '.bash_history', '.bridge', '.c4dslextension', '.cache', '.conda', '.config', '.dapr', '.DbSchema', '.docker', '.dotnet', '.eclipse', '.emulator_console_auth_token', '.erlang.cookie', '.fdk', '.fiddler', '.freemind', '.gem', '.gitconfig', '.gradle', '.groovy', '.ipython', '.jupyter', '.jupyter_nb_ext', '.kqlmagic', '.kube', '.librarymanager', '.m2', '.matplotlib', '.minikube', '.msvscode.hdinsight', '.ngrok', '.node_repl_history', '.nuget', '.omnisharp', '.openjfx', '.pencil', '.pulumi', '.pyenv', '.pylint.d', '.python_history', '.rediscli_history', '.redisinsight', '.report.json', '.rest-client', '.robotframework-ls', '.soapuios', '.sparkmagic', '.ssh', '.templateengine', '.vs', '.vs-kubernetes', '.vscode', '.wdm', '.windows-build-tools', '.yarnrc', '2019-08-25-DeviceData', '2019-08-25-DeviceData.dmd', '2019-08-26-DeviceData', '2019-08-26-DeviceData.dmd', '3D Objects', 'airflow', 'AndroidStudioProjects', 'AppData', 'Application Data', 'asdfasdf-kokeilu.kitsas', 'asdfasdf-kokeilu.kitupiikki', 'asdfasdf-kokeilu.kitupiikki-journal', 'AzureStorageEmulatorDb510.mdf', 'AzureStorageEmulatorDb510_log.ldf', 'AzureStorageEmulatorDb59.mdf', 'AzureStorageEmulatorDb59_log.ldf', 'bmw-dlm', 'Contacts', 'Cookies', 'crm-dev-pg - SubView_1.png', 'crm-dev-pg.png', 'crm_20210223', 'crm_20210223.dmd', 'default-soapui-workspace.xml', 'Desktop', 'dockerpg.ps1', 'Documents', 'Downloads', 'Dropbox', 'dump-crm-prod-postgres-202301101446', 'dump-hydradev-postgres-202301091000', 'dump-hydraprod-postgres-202301090940', 'dump-wavely-preprod-postgres-202301090921', 'dump-wavely-prod-postgres-202301090918', 'dump-wavely-test-postgres-202301090914', 'ecom_delivered_order_line_202002260927.json', 'ecom_delivered_order_line_202002260928.csv', 'EssaAppsOy2021.kitsas', 'EssaimApps-Tilikartta-kitsas.kpk', 'EssaimAppsOy-1-201214.kitsas', 'EssaimAppsOy-1.kitsas', 'EssaimAppsOy-221216.kitsas', 'EssaimAppsOy.kitsas', 'EssaimAppsOy.kitupiikki', 'EssaimAppsOy.kitupiikki-journal', 'EssaimAppsOyoikea-200223.kitupiikki', 'EssaimAppsOyoikea.kitsas', 'EssaimAppsOyoikea.kitupiikki', 'EssaimAppsOyoikea.kitupiikki-journal', 'EssaimAppsOyTilikartta.kpk', 'EssaimAppstesti-harjoitus.kitsas', 'EssaimAppsTilikartta.kpk', 'Evernote', 'export.sql', 'Favorites', 'helloworld.pl', 'HMD Global Oy', 'IntelGraphicsProfiles', 'Kitsas42020testi-harjoitus.kitsas', 'Links', 'Local Settings', 'log.txt', 'log2.txt', 'loguk.txt', 'loguk2.txt', 'mc_unsub_todo.csv', 'Message.xml', 'MicrosoftEdgeBackups', 'Miniconda3', 'Music', 'My Documents', 'my-components', 'mysecrets.json', 'my_first_app', 'NetHood', 'node_modules', 'nokia81backup_20190427', 'NTUSER.DAT', 'ntuser.dat.LOG1', 'ntuser.dat.LOG2', 'NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.0.regtrans-ms', 'NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.1.regtrans-ms', 'NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.2.regtrans-ms', 'NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.blf', 'NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TM.blf', 'NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000001.regtrans-ms', 'NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000002.regtrans-ms', 'NTUSER.DAT{eb8a896c-9679-11ed-9857-010101010000}.TxR.0.regtrans-ms', 'NTUSER.DAT{eb8a896c-9679-11ed-9857-010101010000}.TxR.1.regtrans-ms', 'NTUSER.DAT{eb8a896c-9679-11ed-9857-010101010000}.TxR.2.regtrans-ms', 'NTUSER.DAT{eb8a896c-9679-11ed-9857-010101010000}.TxR.blf', 'NTUSER.DAT{eb8a896d-9679-11ed-9857-010101010000}.TM.blf', 'NTUSER.DAT{eb8a896d-9679-11ed-9857-010101010000}.TMContainer00000000000000000001.regtrans-ms', 'NTUSER.DAT{eb8a896d-9679-11ed-9857-010101010000}.TMContainer00000000000000000002.regtrans-ms', 'ntuser.ini', 'Olliharjoitus-harjoitus.kitsas', 'OMKry-harjoitus.kitsas', 'OMKry.kitsas', 'onecoremsvsmon', 'OneDrive', 'OneDrive - HMD Global Oy', 'package-lock.json', 'Pictures', 'pip', 'Postman', 'PrintHood', 'Properties.xml', 'PycharmProjects', 'rabbitmq.yml', 'Recent', 'requirements_2022_05.txt', 'rest-api-prod-01-connection-string.txt', 'rest-api-prod-01-settings.txt', 'rest-api-prod-01.txt', 'Saved Games', 'Searches', 'sendgrid_export_202003130736.csv', 'sendgrid_export_load_202003130736.csv', 'sendgrid_import_202003130736.csv', 'sendgrid_import_load_202003130736.csv', 'SendTo', 'soapui-settings.xml', 'source', 'Standard Notes Backups', 'Start Menu', 'Templates', 'Tweetbook.mdf', 'Tweetbook_log.ldf', 'urlGenerator', 'var', 'Videos', 'vsdbg', 'x.txt', 'yarn.lock', '_select_a_imei_from_hmd_email_imei_a_inner_join_hmd_profiles2_tm_202005181419.csv', '_select_from_select_p_email_p_opt_in_r_programName_as_programNam_202006261026.csv']</msg>
+<status status="PASS" starttime="20230119 08:51:16.333" endtime="20230119 08:51:16.341"/>
+</kw>
+<status status="PASS" starttime="20230119 08:51:11.054" endtime="20230119 08:51:16.342"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230119 08:51:16.342" endtime="20230119 08:51:18.465"/>
+</kw>
+<tag>rpa</tag>
+<status status="PASS" starttime="20230119 08:51:07.082" endtime="20230119 08:51:18.468"/>
+</test>
+<status status="PASS" starttime="20230119 08:51:06.835" endtime="20230119 08:51:18.473"/>
+</suite>
+<suite id="s1-s1-s1-s3" name="3 Add Google Sheet" source="C:\var\misc\ajokilometrit\RPA\Tasks\3_add_google_sheet.robot">
+<test id="s1-s1-s1-s3-t1" name="Login to Google and add sheet" line="8">
+<kw name="Parse Notes" library="StandardNotesJsonParser">
+<var>${df}</var>
+<arg>${decryptedFilePath}</arg>
+<msg timestamp="20230119 08:51:20.373" level="INFO">Tag title Vene
+Tag title evernote
+Tag title Imported on 15/01/2023, 15:53:49
+Tag title Ajokilometrit2023
+uuids ['5cbeb53c-271a-49a0-9db1-ab276a289137', '5c458bfa-0aa6-4577-bcd7-3d86914dc6d3', '02aef6a3-a7bd-4765-9995-62bd37e7f332', '32187216-c1ae-4fd5-9249-114eeff476ee', '65b4d562-a63e-4450-ac96-1dd3ab7ec945', '1df020ae-872a-4900-8c23-5ac588901d67', '9e4d3310-77f7-4d3b-ad27-282c29647bc0', '14ef2746-be28-4349-aecc-67af83731352', 'a0eb2c48-0e3e-4fb4-abb9-4c32f3264284', '4da7b025-771d-4cc5-be88-b600feb01f93', '174d1a27-a006-4388-934e-20b3b8da94a0', '88347fb4-bdb4-4018-bf1d-5001234a5cf6', '72f61ebb-35c6-43ed-9606-aa26306cd0ca', '27fc40ae-8e6a-4bfd-862c-b834196f1e23', '14575bc5-bb12-4f17-a1ca-7f43d74575d6']
+Note Saturday, 14 Jan 2023 at 10:43 23423
+Note 2023-01-15 11:01 Ma 20323
+Note 2023-01-14 12:00 20100
+Note 2023-01-12 To 50332
+Note 2023-01-11 Ke 50274
+Note 2023-01-10 Ti 50227
+Note 2023-01-03 Ti 50011
+Note 2023-01-16 16:14 50519 ma
+Note 2023-01-17 17:01 Ti 50596
+Note 2023-01-18 16:00 Ke 50641
+data                             title     entry                 createdAt     km        date
+0  Saturday, 14 Jan 2023 at 10:43     23423  2023-01-14T08:43:40.276Z  23423           -
+6                      2023-01-03  Ti 50011  2023-01-15T13:54:53.021Z  50011  2023-01-03
+5                      2023-01-10  Ti 50227  2023-01-15T13:55:16.685Z  50227  2023-01-10
+4                      2023-01-11  Ke 50274  2023-01-15T13:55:30.012Z  50274  2023-01-11
+3                      2023-01-12  To 50332  2023-01-15T13:55:41.819Z  50332  2023-01-12
+2                2023-01-14 12:00     20100  2023-01-15T07:49:26.068Z  20100  2023-01-14
+1                2023-01-15 11:01  Ma 20323  2023-01-15T09:47:01.399Z  20323  2023-01-15
+7                2023-01-16 16:14  50519 ma  2023-01-16T14:09:53.948Z  50519  2023-01-16
+8                2023-01-17 17:01  Ti 50596  2023-01-17T14:59:08.836Z  50596  2023-01-17
+9                2023-01-18 16:00  Ke 50641  2023-01-18T13:37:28.324Z  50641  2023-01-18</msg>
+<msg timestamp="20230119 08:51:20.378" level="INFO">${df} =                             title     entry                 createdAt     km        date
+0  Saturday, 14 Jan 2023 at 10:43     23423  2023-01-14T08:43:40.276Z  23423           -
+6                     ...</msg>
+<status status="PASS" starttime="20230119 08:51:20.351" endtime="20230119 08:51:20.378"/>
+</kw>
+<kw name="Populate Sheet" library="GoogleSheetClient">
+<arg>${sheetName}</arg>
+<arg>${df}</arg>
+<msg timestamp="20230119 08:51:25.326" level="INFO">Pvm Mittarilukema  Ajo km                      Syöttöaika     Syöte             Talletettu
+0           -         23423       0  Saturday, 14 Jan 2023 at 10:43     23423  'Sat 2023-01-14 08:43
+6  2023-01-03         50011       0                      2023-01-03  Ti 50011  'Sun 2023-01-15 13:54
+5  2023-01-10         50227       0                      2023-01-10  Ti 50227  'Sun 2023-01-15 13:55
+4  2023-01-11         50274       0                      2023-01-11  Ke 50274  'Sun 2023-01-15 13:55
+3  2023-01-12         50332       0                      2023-01-12  To 50332  'Sun 2023-01-15 13:55
+2  2023-01-14         20100       0                2023-01-14 12:00     20100  'Sun 2023-01-15 07:49
+1  2023-01-15         20323       0                2023-01-15 11:01  Ma 20323  'Sun 2023-01-15 09:47
+7  2023-01-16         50519       0                2023-01-16 16:14  50519 ma  'Mon 2023-01-16 14:09
+8  2023-01-17         50596       0                2023-01-17 17:01  Ti 50596  'Tue 2023-01-17 14:59
+9  2023-01-18         50641       0                2023-01-18 16:00  Ke 50641  'Wed 2023-01-18 13:37</msg>
+<status status="PASS" starttime="20230119 08:51:20.379" endtime="20230119 08:51:25.326"/>
+</kw>
+<tag>rpa</tag>
+<status status="PASS" starttime="20230119 08:51:20.351" endtime="20230119 08:51:25.326"/>
+</test>
+<status status="PASS" starttime="20230119 08:51:18.477" endtime="20230119 08:51:25.327"/>
+</suite>
+<status status="PASS" starttime="20230119 08:51:05.070" endtime="20230119 08:51:25.329"/>
+</suite>
+<status status="PASS" starttime="20230119 08:51:05.067" endtime="20230119 08:51:25.330"/>
+</suite>
+<status status="PASS" starttime="20230119 08:51:05.042" endtime="20230119 08:51:25.331"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+<stat pass="3" fail="0" skip="0">rpa</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Ajokilometrit">Ajokilometrit</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="RPA">Ajokilometrit.RPA</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1-s1" name="Tasks">Ajokilometrit.RPA.Tasks</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s1" name="1 Download From Mail">Ajokilometrit.RPA.Tasks.1 Download From Mail</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s2" name="2 Decrypt Downloaded File">Ajokilometrit.RPA.Tasks.2 Decrypt Downloaded File</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s3" name="3 Add Google Sheet">Ajokilometrit.RPA.Tasks.3 Add Google Sheet</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

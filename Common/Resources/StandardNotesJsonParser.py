@@ -3,6 +3,8 @@ import pandas as pd
 
 class StandardNotesJsonParser:
 
+    DEFAULT_DECRYPTED_FILE = 'C:/var/misc/ajokilometrit/tmp/SN-Data-Decrypted.json'
+    
     tagToInclude = 'Ajokilometrit2023'
 
     def ParseNotes(self, filename):
@@ -57,4 +59,4 @@ class StandardNotesJsonParser:
         return x.group()
 
 if __name__ == '__main__':
-    StandardNotesJsonParser().ParseNotes('C:/var/misc/ajokilometrit/tmp/SN-Data-Decrypted.json')
+    StandardNotesJsonParser().ParseNotes(StandardNotesJsonParser.DEFAULT_ENCRYPTED_FILE)
