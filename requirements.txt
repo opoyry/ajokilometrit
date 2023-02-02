@@ -90,7 +90,6 @@ fonttools==4.28.2
 frozenlist==1.3.3
 fsspec==2021.11.0
 funcsigs==1.0.2
-future==0.18.2
 google-api-core==2.11.0
 google-api-python-client==2.72.0
 google-auth==2.16.0
@@ -147,7 +146,6 @@ langcodes==3.3.0
 lazy-object-proxy==1.6.0
 lockfile==0.12.2
 luhn==0.2.0
-Mako==1.1.6
 Markdown==3.3.6
 MarkupSafe==2.0.1
 marshmallow==3.14.1
@@ -179,7 +177,6 @@ parso==0.8.3
 pendulum==2.1.2
 pickleshare==0.7.5
 pika==1.2.0
-Pillow==8.4.0
 pkginfo==1.8.1
 platformdirs==2.6.2
 pluggy==1.0.0
